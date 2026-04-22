@@ -1,0 +1,63 @@
+      /* <div className="bg-dark text-white px-[32px] flex py-[64px]  gap-[40px] mx-auto">
+        <div>
+          <div className="">
+            <p className="text-[11px] text-sec mb-[16px] tracking-widest uppercase ">
+              Season 04 // springsummer
+            </p>
+            <h1 className="text-[96px] font-bold leading-tight uppercase ">
+              The Curated
+              <br />
+              <span className="text-pri text-[96px] uppercase">collection</span>
+            </h1>
+            <div className="flex mt-9 ">
+              <p className=" font-serif  text-[11px] ml-[25px] font-bold uppercase flex mt-[30px] ">
+                category
+              </p>
+              <p className="text-[12px] tracking-[2px] justify-center mt-[30px] font-sans text-muted ml-[200px] ">
+                Showing Artifacts
+              </p>
+              <p className="text-[12px] justify-end tracking-[2px] font-sans text-muted mt-[30px] uppercase ml-[500px] ">
+                Sort By
+              </p>
+              <a
+                href="#"
+                className="text-[14px] text-pri tracking-widest mt-[30px] ml-[7px] hover:underline"
+              >
+                Newest Arrival
+              </a>
+            </div>
+          </div>
+          <div>
+            <div className="  px-[10px] py-[8px]    ">
+              <p className="text-[16px] font-sans tracking-[2px] text-muted mt-[12px]">
+                All Objects
+              </p>
+              <p className="text-[16px] tracking-[2px] font-sans text-muted mt-[15px]">
+                OuterWear
+              </p>
+              <p className="text-[16px] tracking-[2px] font-sans text-muted mt-[15px]">
+                Accesories
+              </p>
+              <p className="text-[16px] tracking-[2px] font-sans text-muted mt-[15px]">
+                FootWears
+              </p>
+              <p className=" font-serif mt-[25px] text-[11px] font-bold uppercase">
+                Refined By
+              </p>
+              <p className="text-[16px] tracking-[2px] font-sans text-muted mt-[14px]">
+                PriceRange
+              </p>
+              <p className="text-[16px] tracking-[2px] font-sans text-muted mt-[14px]">
+                Materials
+              </p>
+              <div className=" w-[256px] h-[142px]">
+                <p className="mt-[20px] bg-soft  px-[5px] py-[1px] rounded-[6px] font-sans text-[12px] font[400] w-[256px] h-[109px] ">
+                  Every piece in the Atelier is hand-
+                  <br /> selected for its architectural <br />
+                  integrity and material quality.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> */
