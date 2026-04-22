@@ -41,11 +41,11 @@ export default function ProductCatalog() {
 
       <div className="flex">
         <aside className="w-[260px] px-[24px] py-[24px] border-r border-bordercolor">
-          <h2 className="text-[12px] tracking-[0.2em] text-muted mb-[24px]">
+          <h2 className="text-[12px] tracking-[0.2em]  text-white mb-[24px]">
             CATEGORIES
           </h2>
           <ul className="space-y-[16px] text-[14px]">
-            <li className="flex justify-between text-sec">
+            <li className="flex justify-between  text-muted">
               <span>All Objects</span>
               <span className="text-muted">{products.length}</span>
             </li>
@@ -83,7 +83,7 @@ export default function ProductCatalog() {
             </p>
 
             <p className="text-[14px] text-muted">
-              SORT BY <span className="text-sec">Newest Arrivals</span>
+              SORT BY <span className="text-pri">Newest Arrivals</span>
             </p>
           </div>
 
