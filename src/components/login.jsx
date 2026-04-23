@@ -1,8 +1,43 @@
 import React, { useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
+import authentication from "../const.js";
+import { useContext } from "react";
+import {AuthContext} from "../Context/authcontext.jsx"
 export default function Login() {
+  const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
+  // function Submit(e){
+  //   e.preventdefault();
+  //   const email=e.target.useremail.value;
+  //   const password=e.target.userpassword.value;
+  // console.log()
+function Submit(e) {
+    e.preventDefault();
+
+    const email = e.target.useremail.value;
+    const password = e.target.userpassword.value;
+
+    if (
+      email === authentication.email &&
+      password === authentication.password
+    ) {
+      localStorage.setItem("token", email);
+      // if(localStorage.setItem("token"===!null)){
+      //   setUser(null);
+      //   navigate("/login");
+      //   alert("invalid email orpasswoerdd")
+      // }
+      setUser(email);
+
+      navigate("/productcatalog");
+    } else {
+      alert("Invalid credentials");
+    }
+  }
+
+
   
- 
+
   return (
     <div className="min-h-screen bg-dark flex flex-col items-center justify-center p-4 font-sans text-white">
       <div className="w-full max-w-5xl bg-ter rounded-lg overflow-hidden flex flex-col md:flex-row border border-bordercolor shadow-2xl">
@@ -74,17 +109,17 @@ export default function Login() {
             </span>
           </div>
 
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={Submit}>
             <div className="space-y-2">
               <label className="text-[10px] text-muted uppercase tracking-widest block">
                 Email Address
               </label>
-              <input className="w-full bg-transparent border-b border-bordercolor py-2 outline-none focus:border-pri transition-colors placeholder:text-soft text-sm" />
+              <input name="useremail" className="w-full bg-transparent border-b border-bordercolor py-2 outline-none focus:border-pri transition-colors placeholder:text-soft text-sm" />
             </div>
 
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label className="text-[10px] text-muted uppercase tracking-widest block">
+                <label  className="text-[10px] text-muted uppercase tracking-widest block">
                   Password
                 </label>
                 <button
@@ -95,7 +130,7 @@ export default function Login() {
                 </button>
               </div>
               <input
-                type="password"
+                type="password" name="userpassword"
                 className="w-full bg-transparent border-b border-bordercolor py-2 outline-none focus:border-pri transition-colors placeholder:text-soft"
               />
             </div>
