@@ -4,10 +4,10 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-
+//localstorage ma store garekoo
   useEffect(() => {
     const token = localStorage.getItem("token");
-
+//token vaye user lai set natra null grni
     if (token) {
       setUser(token); 
     } else {
@@ -24,11 +24,11 @@ export const AuthProvider = ({ children }) => {
   const isAuthenticated = !!user;
 
   return (
-      <PuvlicRoute>
+      // <PuvlicRoute>
     <AuthContext.Provider value={{ user, setUser, isAuthenticated }}>
       {children}
 
     </AuthContext.Provider>
-      </PuvlicRoute>
+      // </PuvlicRoute> 
   );
 };

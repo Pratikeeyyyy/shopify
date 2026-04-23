@@ -165,7 +165,7 @@ export default function LandingPage() {
             <div
               key={item._id || index}
               className="bg-soft p-[16px] rounded-[12px] "
-              onClick={() => navigate("/productdesc", { state: item })}
+              onClick={() => navigate("/productdescription", { state: item })}
             >
               <img
                 src={item.image || item.images?.[0] || "/image/placeholder.png"}
