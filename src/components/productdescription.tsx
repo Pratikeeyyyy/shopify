@@ -21,7 +21,7 @@ const product = location.state;
  function handleAddToCart() {
   const storedCart = localStorage.getItem("cart");
 
-  let cart: CartItem[] = storedCart ? JSON.parse(storedCart) : [];
+  const cart: CartItem[] = storedCart ? JSON.parse(storedCart) : [];
 
   const newItem: CartItem = {
     name: product?.name,
@@ -31,13 +31,13 @@ const product = location.state;
     quantity: 1,
   };
 
-  cart.push(newItem);
+  const updatedCart = [...cart, newItem];
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+  localStorage.setItem("cart", JSON.stringify(updatedCart));
 
   window.dispatchEvent(new Event("cartUpdated"));
 
-  console.log("Cart:", cart);
+  console.log("Cart:", updatedCart);
 
   alert("Your item is added to cart");
 }

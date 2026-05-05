@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 // import { useContext } from "react";
 import apiClient from "./api";
+import { FormEvent } from "react";
 import React, { useState } from "react";
 // import { AuthContext } from "../Context/authcontext.jsx";
 type User = {
@@ -40,7 +41,7 @@ async function Submit(e: React.FormEvent<HTMLFormElement>)  {
       alert("Login success");
       navigate("/productcatalog");
 
-    } catch (err: unknown) {
+    } catch (err){
   console.log(err);
       alert("Invalid email or password");
     }
