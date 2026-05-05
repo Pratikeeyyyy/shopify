@@ -1,43 +1,52 @@
-import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import authentication from "../const.js";
-import { useContext } from "react";
-import {AuthContext} from "../Context/authcontext.jsx"
+// import { useContext } from "react";
+import apiClient from "./api";
+import React, { useState } from "react";
+// import { AuthContext } from "../Context/authcontext.jsx";
+type User = {
+  email: string;
+  password?: string;
+};
+// type AuthContextType = {
+//   user: any;
+//   setUser: React.Dispatch<React.SetStateAction<any>>;
+// };
 export default function Login() {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
-  // function Submit(e){
-  //   e.preventdefault();
-  //   const email=e.target.useremail.value;
-  //   const password=e.target.userpassword.value;
-  // console.log()
-function Submit(e) {
+  const [user, setUser] = useState<User | null>(null);
+console.log(user);
+async function Submit(e: React.FormEvent<HTMLFormElement>)  {
     e.preventDefault();
 
-    const email = e.target.useremail.value;
-    const password = e.target.userpassword.value;
+    const formData = new FormData(e.currentTarget);
 
-    if (
-      email === authentication.email &&
-      password === authentication.password
-    ) {
-      localStorage.setItem("token", email);
-      // if(localStorage.setItem("token"===!null)){
-      //   setUser(null);
-      //   navigate("/login");
-      //   alert("invalid email orpasswoerdd")
-      // }
-      setUser(email);
+    const email = formData.get("email")?.toString() || "";
+    const password = formData.get("password")?.toString() || "";
 
+    console.log("Entered Email:", email);
+    console.log("Entered Password:", password);
+
+    try {
+      const res = await apiClient.post("/auth/login", {
+        email,
+        password,
+      });
+
+      const token = res.data.data.accessToken;
+
+      localStorage.setItem("token", token);
+      setUser(token);
+
+      alert("Login success");
       navigate("/productcatalog");
-    } else {
-      alert("Invalid credentials");
+
+    } catch (err: unknown) {
+  console.log(err);
+      alert("Invalid email or password");
     }
   }
 
-
   
-
   return (
     <div className="min-h-screen bg-dark flex flex-col items-center justify-center p-4 font-sans text-white">
       <div className="w-full max-w-5xl bg-ter rounded-lg overflow-hidden flex flex-col md:flex-row border border-bordercolor shadow-2xl">
@@ -84,7 +93,7 @@ function Submit(e) {
             <button className="pb-4 text-white font-medium border-b-2 border-pri">
               Login
             </button>
-            <button className="pb-4 text-muted hover:text-white transition-colors">
+            <button className="pb-4 text-muted hover:text-white transition-colors"  onClick={() => navigate("/register")}>
               Sign Up
             </button>
           </div>
@@ -109,31 +118,38 @@ function Submit(e) {
             </span>
           </div>
 
-          <form className="space-y-6" onSubmit={Submit}>
+           <form className="space-y-6" onSubmit={Submit} >
             <div className="space-y-2">
               <label className="text-[10px] text-muted uppercase tracking-widest block">
                 Email Address
               </label>
               <input name="useremail" className="w-full bg-transparent border-b border-bordercolor py-2 outline-none focus:border-pri transition-colors placeholder:text-soft text-sm" />
             </div>
+               <div className="space-y-2">
+    <div className="flex justify-between items-center">
+      <label
+        htmlFor="userpassword"
+        className="text-[10px] text-muted uppercase tracking-widest block"
+      >
+        Password
+      </label>
 
-            <div className="space-y-2">
-              <div className="flex justify-between items-center">
-                <label  className="text-[10px] text-muted uppercase tracking-widest block">
-                  Password
-                </label>
-                <button
-                  type="button"
-                  className="text-[10px] text-pri uppercase tracking-widest"
-                >
-                  Forgot?
-                </button>
-              </div>
-              <input
-                type="password" name="userpassword"
-                className="w-full bg-transparent border-b border-bordercolor py-2 outline-none focus:border-pri transition-colors placeholder:text-soft"
-              />
-            </div>
+      <button
+        type="button"
+        className="text-[10px] text-pri uppercase tracking-widest"
+      >
+        Forgot?
+      </button>
+    </div>
+
+    <input
+      id="userpassword"
+      type="password"
+      name="userpassword"
+      className="w-full bg-transparent border-b border-bordercolor py-2 outline-none focus:border-pri transition-colors placeholder:text-soft"
+    />
+  </div>
+         
 
             <div className="flex items-center gap-3">
               <input
@@ -148,7 +164,8 @@ function Submit(e) {
             <button className="w-full bg-pri text-dark font-bold py-4 rounded-md mt-4 shadow-[0_0_20px_rgba(163,166,255,0.3)] hover:brightness-110 transition-all uppercase tracking-widest text-sm">
               Access Gallery
             </button>
-          </form>
+            
+          </form> 
 
           <p className="text-[10px] text-muted text-center mt-8">
             By entering, you agree to our
@@ -173,3 +190,4 @@ function Submit(e) {
     </div>
   );
 }
+  
